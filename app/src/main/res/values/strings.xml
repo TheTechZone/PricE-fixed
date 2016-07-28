@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">PricE</string>
+    <string name="network_unavailable">Network is unavailable.</string>
+    <string name="search">Search</string>
+</resources>
