@@ -43,9 +43,9 @@ public class AdapterList  extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         MyHolder myHolder= (MyHolder) holder;
         DataItem current=data.get(position);
         myHolder.textFishName.setText(current.productName);
-        myHolder.textSize.setText("Size: " + current.productDescription);
-        myHolder.textType.setText("Category: " + current.productStore);
-        myHolder.textPrice.setText("Rs. " + current.productPrice + "\\Heuro");
+        myHolder.textSize.setText("Description:" + current.productDescription);
+        myHolder.textType.setText("Location:" + current.productStore);
+        myHolder.textPrice.setText("Price: " + current.productPrice + "Heuro");
         myHolder.textPrice.setTextColor(ContextCompat.getColor(context, R.color.colorAccent));
 
     }

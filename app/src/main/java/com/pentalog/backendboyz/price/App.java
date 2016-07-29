@@ -184,8 +184,6 @@ public class App extends AppCompatActivity {
 
         };
         mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
-
-
     }
 
     private String getCurrentCity(String jsonData) throws JSONException{
