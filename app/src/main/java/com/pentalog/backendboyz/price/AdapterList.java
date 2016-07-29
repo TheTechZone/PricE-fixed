@@ -45,7 +45,7 @@ public class AdapterList  extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         myHolder.textFishName.setText(current.productName);
         myHolder.textSize.setText("Description:" + current.productDescription);
         myHolder.textType.setText("Location:" + current.productStore);
-        myHolder.textPrice.setText("Price: " + current.productPrice + "Heuro");
+        myHolder.textPrice.setText("Price:" + current.productPrice + " RON");
         myHolder.textPrice.setTextColor(ContextCompat.getColor(context, R.color.colorAccent));
 
     }

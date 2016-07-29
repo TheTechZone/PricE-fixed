@@ -3,15 +3,11 @@
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/menuItem1"
-        android:title="Add to db">
-    </item>
-    <item
-        android:id="@+id/menuItem2"
         android:title="About">
     </item>
     <item
-        android:id="@+id/menuItem3"
-        android:title="Remove ads">
+        android:id="@+id/menuItem2"
+        android:title="Log out.">
     </item>
     <item android:id="@+id/menu_search"
         android:title="Search"

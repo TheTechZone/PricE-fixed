@@ -23,6 +23,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,6 +61,7 @@ public class App extends AppCompatActivity {
     private  Context mContext;
     private  String mCity;
 
+    private ImageButton mImageButton;
 
     // CONNECTION_TIMEOUT and READ_TIMEOUT are in milliseconds
     public static final int CONNECTION_TIMEOUT = 10000;
@@ -94,6 +96,16 @@ public class App extends AppCompatActivity {
         //mCityLabel = (TextView) findViewById(R.id.cityLabel);
 
         mLocationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
+
+        mImageButton = (ImageButton) findViewById(R.id.imageButton);
+        mImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(App.this, "Potatoes", Toast.LENGTH_SHORT).show();
+                Intent addItem = new Intent(App.this,AddItemForm.class);
+                startActivity(addItem);
+            }
+        });
 
         LocationListener locationListener = new LocationListener() {
 
@@ -241,13 +253,11 @@ public class App extends AppCompatActivity {
 
         switch (item.getItemId()){
             case R.id.menuItem1 :
-                Toast.makeText(App.this, "TO BE IMPLEMENTED ...Someday (hopefully)", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.menuItem2 :
                 Toast.makeText(App.this, "Made with <3", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.menuItem3 :
-                Toast.makeText(App.this, "No ads till now. Blame the lazy developers", Toast.LENGTH_SHORT).show();
+            case R.id.menuItem2 :
+                finish();
+                System.exit(0);
                 break;
             default: break;
         }
