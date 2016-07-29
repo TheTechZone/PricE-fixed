@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -12,6 +13,9 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.nfc.Tag;
 import android.os.AsyncTask;
+import android.os.PersistableBundle;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -44,7 +48,6 @@ import java.net.URL;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
-
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -57,9 +60,12 @@ public class App extends AppCompatActivity {
     private double mLatitude,mLongitude;
     //private TextView mLocationLabel;
     //private TextView mCityLabel;
-
     private  Context mContext;
     private  String mCity;
+
+//    private DrawerLayout mDrawerLayout;
+//    private ActionBarDrawerToggle mActionBarDrawerToggle;
+
 
     private ImageButton mImageButton;
 
@@ -85,7 +91,28 @@ public class App extends AppCompatActivity {
         Toolbar mToolbar = (Toolbar) findViewById(R.id.myToolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //   mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        mActionBarDrawerToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.drawer_opened,R.string.drawer_closed){
+//            @Override
+//            public void onDrawerOpened(View drawerView) {
+//                super.onDrawerOpened(drawerView);
+//                if(getSupportActionBar() != null) {
+//                    getSupportActionBar().setTitle(R.string.drawer_opened);
+//                }
+//            }
+//
+//            @Override
+//            public void onDrawerClosed(View drawerView) {
+//                super.onDrawerClosed(drawerView);
+//                if(getSupportActionBar() != null) {
+//                    getSupportActionBar().setTitle(R.string.drawer_closed);
+//                }
+//            }
+//        };
+//
+//        mDrawerLayout.addDrawerListener(mActionBarDrawerToggle);
 
         Intent mIntent = getIntent();
         final String email = mIntent.getStringExtra("user");
@@ -198,6 +225,18 @@ public class App extends AppCompatActivity {
         mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
     }
 
+    @Override
+    public void onPostCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
+        super.onPostCreate(savedInstanceState, persistentState);
+//        mActionBarDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+//        mActionBarDrawerToggle.onConfigurationChanged(newConfig);
+    }
+
     private String getCurrentCity(String jsonData) throws JSONException{
         JSONObject response = new JSONObject(jsonData);
         JSONObject address = response.getJSONObject("address");
@@ -262,6 +301,10 @@ public class App extends AppCompatActivity {
             default: break;
         }
 
+//
+//        if (mActionBarDrawerToggle.onOptionsItemSelected(item)){
+//            return true;
+//        }
         return super.onOptionsItemSelected(item);
     }
 
