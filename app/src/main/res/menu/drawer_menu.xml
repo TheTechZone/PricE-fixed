@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item android:id="@+id/firstId"
+              android:title="First"
+              android:icon="@drawable/ic_test"
+            ></item>
+
+        <item android:id="@+id/secondttId"
+              android:title="2nd"
+              android:icon="@drawable/ic_test"
+            ></item>
+
+        <item android:id="@+id/thirdId"
+              android:title="3rd"
+              android:icon="@drawable/ic_test"
+            ></item>
+    </group>
+
+    <item android:title="TEST">
+        <menu>
+            <item android:title="Potato"
+                android:id="@+id/potatoId"
+                android:icon="@drawable/ic_test">
+            </item>
+            <item android:title="Carrot"
+                  android:id="@+id/carrotId"
+                  android:icon="@drawable/ic_test">
+            </item>
+            <item android:title="Pidgey"
+                  android:id="@+id/pidgeyId"
+                  android:icon="@drawable/ic_test">
+            </item>
+
+        </menu>
+    </item>
+
+</menu>

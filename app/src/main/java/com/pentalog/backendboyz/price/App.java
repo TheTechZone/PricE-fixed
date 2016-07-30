@@ -11,9 +11,9 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.nfc.Tag;
 import android.os.AsyncTask;
 import android.os.PersistableBundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -26,9 +26,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -63,9 +61,11 @@ public class App extends AppCompatActivity {
     private  Context mContext;
     private  String mCity;
 
-//    private DrawerLayout mDrawerLayout;
-//    private ActionBarDrawerToggle mActionBarDrawerToggle;
+     private DrawerLayout mDrawerLayout;
+     private ActionBarDrawerToggle mActionBarDrawerToggle;
 
+    //FragmentTransaction mFragmentTransaction;
+    //Nav
 
     private ImageButton mImageButton;
 
@@ -88,31 +88,39 @@ public class App extends AppCompatActivity {
 
         setContentView(R.layout.activity_app);
 
-        Toolbar mToolbar = (Toolbar) findViewById(R.id.myToolbar);
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //   mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        mActionBarDrawerToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.drawer_opened,R.string.drawer_closed){
-//            @Override
-//            public void onDrawerOpened(View drawerView) {
-//                super.onDrawerOpened(drawerView);
-//                if(getSupportActionBar() != null) {
-//                    getSupportActionBar().setTitle(R.string.drawer_opened);
-//                }
-//            }
-//
-//            @Override
-//            public void onDrawerClosed(View drawerView) {
-//                super.onDrawerClosed(drawerView);
-//                if(getSupportActionBar() != null) {
-//                    getSupportActionBar().setTitle(R.string.drawer_closed);
-//                }
-//            }
-//        };
-//
-//        mDrawerLayout.addDrawerListener(mActionBarDrawerToggle);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mActionBarDrawerToggle = new ActionBarDrawerToggle(this,mDrawerLayout,mToolbar,R.string.drawer_opened,R.string.drawer_closed){
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                if(getSupportActionBar() != null) {
+                    getSupportActionBar().setTitle(R.string.drawer_opened);
+                }
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+                if(getSupportActionBar() != null) {
+                    getSupportActionBar().setTitle(R.string.drawer_closed);
+                }
+            }
+        };
+
+        mDrawerLayout.addDrawerListener(mActionBarDrawerToggle);
+
+        //mFragmentTransaction = getSupportFragmentManager().beginTransaction();
+
+        //mFragmentTransaction.add(R.id.main_container,new HomeFragment());
+        //mFragmentTransaction.commit();
+
+
+
 
         Intent mIntent = getIntent();
         final String email = mIntent.getStringExtra("user");
@@ -226,9 +234,9 @@ public class App extends AppCompatActivity {
     }
 
     @Override
-    public void onPostCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onPostCreate(savedInstanceState, persistentState);
-//        mActionBarDrawerToggle.syncState();
+    public void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        mActionBarDrawerToggle.syncState();
     }
 
     @Override
