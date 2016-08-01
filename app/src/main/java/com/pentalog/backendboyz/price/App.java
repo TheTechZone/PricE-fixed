@@ -124,9 +124,9 @@ public class App extends AppCompatActivity {
 
         Intent mIntent = getIntent();
         final String email = mIntent.getStringExtra("user");
-        String pass = mIntent.getStringExtra("pass");
-        Log.d("email:",email);
-        Log.d("pass:",pass);
+        final String pass = mIntent.getStringExtra("pass");
+//        Log.d("email:",email);
+//        Log.d("pass:",pass);
         //mLocationLabel = (TextView) findViewById(R.id.locationLabel);
         //mCityLabel = (TextView) findViewById(R.id.cityLabel);
 
@@ -452,12 +452,15 @@ public class App extends AppCompatActivity {
                     // Extract data from json and store into ArrayList as class objects
                     for (int i = 0; i < jArray.length(); i++) {
                         JSONObject json_data = jArray.getJSONObject(i);
-                        DataItem productData = new DataItem();
-                        productData.productName = json_data.getString("name");
-                        productData.productDescription = json_data.getString("description");
-                        productData.productStore = json_data.getString("location");
-                        productData.productPrice = json_data.getInt("price");
-                        data.add(productData);
+                        //Log.d("cartofi",json_data.getString("location"));
+                          //  if(json_data.getString("location").equals(mCity)){
+                            DataItem productData = new DataItem();
+                            productData.productName = json_data.getString("name");
+                            productData.productDescription = json_data.getString("description");
+                            productData.productStore = json_data.getString("location");
+                            productData.productPrice = json_data.getInt("price");
+                            data.add(productData);
+                        //}
                     }
 
                     // Setup and Handover data to recyclerview
